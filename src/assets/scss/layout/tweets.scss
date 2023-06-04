@@ -1,0 +1,22 @@
+.write-modal-container{
+  max-width: 600px;
+  .user-name {
+    color: rgb(107, 114, 128);
+  }
+}
+
+.text-field{
+  caret-color: #93c5fd;
+  div{
+    outline: none;
+    min-height: 100px;
+  }
+}
+.dark-gray-color{
+  color:#585E6D;
+}
+
+.arrow-tooltip{
+  box-shadow: 0 1px 3px 0 rgb(0, 0, 0 / 0.1), 0 1px 2px -1px rgb(0, 0, 0 / 0.1);
+  background: rgb(0, 0, 0 / 0.1);
+}
