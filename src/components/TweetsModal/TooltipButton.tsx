@@ -5,9 +5,7 @@ interface TooltipButtonProps {
     tooltipTitle: string
 }
 
-const TooltipButton = ({children, tooltipTitle}: TooltipButtonProps) => {
-
-    return <div className='group/item flex relative duration-300'>
+const TooltipButton = ({children, tooltipTitle}: TooltipButtonProps) => <div className='group/item flex relative duration-300'>
         <span
             className="group/edit group-hover/item:flex absolute hidden  w-max absolute bottom-1/4
             left-1/2 transform -translate-x-1/2 -translate-y-1/2 -translate-y-full w-auto
@@ -19,7 +17,6 @@ const TooltipButton = ({children, tooltipTitle}: TooltipButtonProps) => {
             {tooltipTitle}
         </span>
         {children}
-    </div>
-};
+    </div>;
 
 export default TooltipButton;

@@ -1,10 +1,9 @@
 import React from 'react';
+
 import Dashboard from "./pages/Dashboard";
 
-function App() {
-    return (
+const App = () => (
         <Dashboard/>
-    );
-}
+    )
 
 export default App;

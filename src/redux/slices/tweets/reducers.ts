@@ -1,6 +1,6 @@
+import {ITweetProps, ITweetsProps} from "@allTypes/reduxTypes/tweetsStateTypes";
 import { IAction } from '@redux/store'
 import { SliceCaseReducers } from '@reduxjs/toolkit/src/createSlice'
-import {ITweetProps, ITweetsProps} from "@allTypes/reduxTypes/tweetsStateTypes";
 
 const createReducer = <T extends SliceCaseReducers<ITweetsProps>>(reducer: T) => ({ ...reducer })
 

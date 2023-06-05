@@ -1,6 +1,7 @@
 import React from 'react'
+import { Editor } from '@tiptap/react'
 
-const MenuBar = ({editor}: any) => {
+const MenuBar = ({editor}: { editor: Editor | null }) => {
     if (!editor) {
         return null
     }
@@ -9,6 +10,7 @@ const MenuBar = ({editor}: any) => {
         <div className='mb-2 flex'>
             <div className='mr-2'>
                 <button
+                    type="button"
                     onClick={() => editor.chain().focus().toggleBold().run()}
                     disabled={
                         !editor.can()
@@ -52,7 +54,7 @@ const MenuBar = ({editor}: any) => {
                     bullet list
                 </button>
             </div>
-            <div className={`mr-2`}>
+            <div className="mr-2">
                 <button
                     onClick={() => editor.chain().focus().toggleOrderedList().run()}
                     className={`${editor.isActive('orderedList') ? 'is-active bg-black text-white' : 'border-solid border border-black'} rounded-md

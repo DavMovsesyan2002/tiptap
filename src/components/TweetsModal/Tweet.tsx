@@ -1,13 +1,15 @@
 import type {FC} from 'react'
 import React from 'react'
-import Profile from "../../assets/images/profile.png";
-import TweetBody from "./TweetBody";
-import DragIndicator from "src/assets/images/DragIndicator";
-import {useAppSelector} from "src/redux/hooks";
-import {tweetsSelector} from "src/redux/slices/tweets";
-import TweetHeader from "src/components/TweetsModal/TweetHeader";
 import {DraggableProvided, DraggableProvidedDragHandleProps} from "react-beautiful-dnd";
 import {ITweetProps} from "@allTypes/reduxTypes/tweetsStateTypes";
+import DragIndicator from "src/assets/images/DragIndicator";
+import TweetHeader from "src/components/TweetsModal/TweetHeader";
+import {useAppSelector} from "src/redux/hooks";
+import {tweetsSelector} from "src/redux/slices/tweets";
+
+import Profile from "../../assets/images/profile.png";
+
+import TweetBody from "./TweetBody";
 
 interface DragItemProps {
     provided: DraggableProvided
@@ -24,8 +26,7 @@ export const Tweet: FC<DragItemProps> = ({provided, item, tweetOfId, setTweetOfI
         e.stopPropagation();
     };
 
-    const renderDragHandle = (dragHandleProps: DraggableProvidedDragHandleProps | null | undefined) => {
-        return (
+    const renderDragHandle = (dragHandleProps: DraggableProvidedDragHandleProps | null | undefined) => (
             <div onDragStart={handleDragStart} draggable={Boolean(dragHandleProps)} {...dragHandleProps}
                  className='drag-handle cursor-move w-10 h-14 items-center mr-2 justify-end flex'>
                 <div className='justify-center hidden items-center group-hover:flex'>
@@ -33,7 +34,6 @@ export const Tweet: FC<DragItemProps> = ({provided, item, tweetOfId, setTweetOfI
                 </div>
             </div>
         );
-    };
 
     return (
         <div key={item.id} ref={provided.innerRef} onClick={() => setTweetOfId(item.id)}

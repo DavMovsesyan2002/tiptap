@@ -1,27 +1,29 @@
-import CircleIcon from "../../assets/images/CircleIcon";
+import React, {FC, useEffect, useState} from 'react'
+import {ITweetProps} from "@allTypes/reduxTypes/tweetsStateTypes";
 import CharacterCount from '@tiptap/extension-character-count'
+import {Color} from '@tiptap/extension-color'
 import Document from '@tiptap/extension-document'
+import Dropcursor from "@tiptap/extension-dropcursor";
+import {Image} from "@tiptap/extension-image";
+import ListItem from '@tiptap/extension-list-item'
 import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
+import {TextStyle} from '@tiptap/extension-text-style';
 import {EditorContent, useEditor} from '@tiptap/react'
-import React, {FC, useEffect, useState} from 'react'
+import StarterKit from '@tiptap/starter-kit'
+import CloseIcon from "src/assets/images/CloseIcon";
+import ImageUploadInput from "src/components/TweetsModal/ImageUploadInput";
+import MenuBar from "src/components/TweetsModal/MenuBar";
+import middleware from "src/redux/slices/tweets/middleware";
+import {v4 as uuidv4} from 'uuid';
+
+import CircleIcon from "../../assets/images/CircleIcon";
 import PlusIcon from "../../assets/images/PlusIcon";
-import TooltipButton from "./TooltipButton";
 import {dispatch, useAppSelector} from "../../redux/hooks";
 import {tweetsMiddleware, tweetsSelector} from "../../redux/slices/tweets";
-import {Image} from "@tiptap/extension-image";
-import Dropcursor from "@tiptap/extension-dropcursor";
-import ImageUploadInput from "src/components/TweetsModal/ImageUploadInput";
-import CloseIcon from "src/assets/images/CloseIcon";
-import {v4 as uuidv4} from 'uuid';
-import {ITweetProps} from "@allTypes/reduxTypes/tweetsStateTypes";
-import MenuBar from "src/components/TweetsModal/MenuBar";
-import {Color} from '@tiptap/extension-color'
-import {TextStyle} from '@tiptap/extension-text-style';
-import StarterKit from '@tiptap/starter-kit'
-import ListItem from '@tiptap/extension-list-item'
-import middleware from "src/redux/slices/tweets/middleware";
 import {LIMIT} from "../../shared/constants";
+
+import TooltipButton from "./TooltipButton";
 
 interface ITweetBodyProps {
     tweet: ITweetProps
@@ -40,7 +42,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
         if (count >= 2 && editorTextarea && event.key === 'Enter') {
             dispatch(tweetsMiddleware.addNewWithOnKeyTweet(
                 {
-                    name: 'Sergeiee',
+                    name: 'Sergei',
                     userName: '@Sergei757063608',
                     text: '',
                     id: uuid,
@@ -50,6 +52,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
             ))
             dispatch(middleware.incrementCount(0))
         }
+
         if (count <= -2 && editorTextarea && event.key === 'Backspace') {
             dispatch(tweetsMiddleware.removeTweet(index - 1))
             dispatch(middleware.incrementCount(0))
@@ -102,6 +105,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
         content: ``,
         onUpdate({editor}) {
             const imageNode = editor.getAttributes('image');
+
             if (imageNode && imageNode.src) {
                 dispatch(tweetsMiddleware.updateImageOfTweet(imageNode.src, tweetOfId))
             }
@@ -111,9 +115,11 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
     useEffect(() => {
         if (editorTextarea) {
             const updateCharacterCount = () => {
-                const content = editorTextarea.getJSON().content;
+                const {content} = editorTextarea.getJSON();
+
                 if (content) {
                     const text = content.map((node) => node.text).join(' ');
+
                     setCharacterCount(text.length);
                 }
             };
@@ -145,7 +151,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
 
     const handleDeleteImage = () => {
         if (editorImage) {
-            dispatch(tweetsMiddleware.updateImageOfTweet('', tweet))
+            dispatch(tweetsMiddleware.updateImageOfTweet('', tweet.id))
             editorImage.commands.setContent('');
         }
     }
@@ -154,13 +160,13 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
         if (editorTextarea && tweetOfId) {
             editorTextarea.view.focus()
         }
-    }, [editorTextarea])
+    }, [editorTextarea, tweetOfId])
 
     useEffect(() => {
         if (editorTextarea && tweetOfId && tweetsList.length - 1 === index) {
             editorTextarea.view.focus()
         }
-    }, [tweetsList.length ])
+    }, [editorTextarea, index, tweetOfId, tweetsList.length])
 
 
     return (
@@ -168,7 +174,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
             <div className='mt-5 outline-none w-full'>
                 <MenuBar editor={editorTextarea}/>
                 <div className='mt-5'>
-                    <EditorContent onKeyDown={handleKeyDown} className={`text-field break-words`}
+                    <EditorContent onKeyDown={handleKeyDown} className="text-field break-words"
                                    editor={editorTextarea}/>
                 </div>
                 <div className={`relative ${!editorImage?.getCharacterCount() && 'hidden'}`}>
@@ -176,7 +182,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
                          className="h-6 w-6 absolute top-2 z-10 cursor-pointer left-2 p-px transition bg-gray-800 hover:bg-gray-700 rounded-full hover:scale-125">
                         <CloseIcon/>
                     </div>
-                    <EditorContent className='mt-3 text-field rounded-lg object-cover shadow-lg border border-2'
+                    <EditorContent className='mt-3 text-field rounded-lg object-cover shadow-lg border-2'
                                    editor={editorImage}/>
                 </div>
             </div>
