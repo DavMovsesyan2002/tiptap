@@ -9,7 +9,7 @@
   caret-color: #93c5fd;
   div{
     outline: none;
-    min-height: 100px;
+    min-height: 60px;
   }
 }
 
@@ -20,4 +20,8 @@
 .arrow-tooltip{
   box-shadow: 0 1px 3px 0 rgb(0, 0, 0 / 0.1), 0 1px 2px -1px rgb(0, 0, 0 / 0.1);
   background: rgb(0, 0, 0 / 0.1);
+}
+
+.font-circular {
+  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji
 }

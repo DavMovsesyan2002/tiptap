@@ -9,7 +9,7 @@ const TooltipButton = ({children, tooltipTitle}: TooltipButtonProps) => {
 
     return <div className='group/item flex relative duration-300'>
         <span
-            className="group/edit group-hover/item:flex absolute hidden  w-max absolute bottom-1/2
+            className="group/edit group-hover/item:flex absolute hidden  w-max absolute bottom-1/3
             left-1/2 transform -translate-x-1/2 -translate-y-1/2 -translate-y-full w-auto
             px-2 py-1  rounded-lg text-center text-sm after:content-['']
             after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2

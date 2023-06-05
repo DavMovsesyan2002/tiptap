@@ -1,95 +1,49 @@
-import type {Identifier, XYCoord} from 'dnd-core'
 import type {FC} from 'react'
-import React, {useRef} from 'react'
-import {useDrag, useDrop} from 'react-dnd'
-
-import {ItemTypes} from './ItemTypes'
+import React from 'react'
 import Profile from "../../assets/images/profile.png";
 import TweetBody from "./TweetBody";
 import DragIndicator from "src/assets/images/DragIndicator";
 import {useAppSelector} from "src/redux/hooks";
 import {tweetsSelector} from "src/redux/slices/tweets";
 import TweetHeader from "src/components/TweetsModal/TweetHeader";
-import {ITweetProps} from "@allTypes/reduxTypes/tweetsStateTypes";
+import {  DraggableProps } from "react-beautiful-dnd";
 
 interface DragItemProps {
+    provided: any
+    item: any
+    snapshot: any
+    tweetOfId: any
+    setTweetOfId: any
     index: number
-    tweet: ITweetProps
-    moveTweet: (dragIndex: number, hoverIndex: number) => void
 }
 
-export const Tweet: FC<DragItemProps> = ({tweet, index, moveTweet}) => {
-    const ref = useRef<HTMLDivElement>(null)
-
+export const Tweet: FC<DragItemProps> = ({provided, snapshot, item, tweetOfId, setTweetOfId, index}) => {
     const tweetsList = useAppSelector(tweetsSelector.tweetsList)
+    const isDragging = snapshot.isDragging;
 
-    const [{handlerId}, drop] = useDrop<DragItemProps,
-        void,
-        { handlerId: Identifier | null }>({
-        accept: ItemTypes.CARD,
-        collect(monitor) {
-            return {
-                handlerId: monitor.getHandlerId(),
-            }
-        },
-        hover(item: DragItemProps, monitor) {
-            if (!ref.current) {
-                return
-            }
-            const dragIndex = item.index
-            const hoverIndex = index
+    const isDraggingOver = snapshot.isDraggingOver;
 
-            if (dragIndex === hoverIndex) {
-                return
-            }
+    const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+        e.stopPropagation();
+    };
 
-            const hoverBoundingRect = ref.current?.getBoundingClientRect()
-
-            const hoverMiddleY =
-                (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
-
-            const clientOffset = monitor.getClientOffset()
-
-            const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
-
-            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-                return
-            }
-
-            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-                return
-            }
-
-            moveTweet(dragIndex, hoverIndex)
-            item.index = hoverIndex
-        },
-    })
-
-    const [{isDragging}, drag] = useDrag({
-        type: ItemTypes.CARD,
-        item: () => {
-            return {id: tweet.id, index}
-        },
-        collect: (monitor: any) => ({
-            isDragging: monitor.isDragging(),
-        }),
-    })
-
-    const opacity = isDragging ? 0 : 1
-
-    drag(drop(ref))
+    const renderDragHandle = (dragHandleProps: DraggableProps | undefined) => {
+        return (
+            <div onDragStart={handleDragStart} draggable={Boolean(dragHandleProps)} {...dragHandleProps} className='drag-handle cursor-move w-10 h-14 items-center mr-2 justify-end flex'>
+                <div className='justify-center hidden items-center group-hover:flex'>
+                    <DragIndicator/>
+                </div>
+            </div>
+        );
+    };
 
     return (
-        <div data-handler-id={handlerId}>
+        <div className={`${isDraggingOver && !isDragging ? 'shadow-lg' : ''}`}  key={item.id} ref={provided.innerRef} onClick={() => setTweetOfId(item.id)}
+             {...provided.draggableProps}>
             <div className='px-12 group'>
                 <div className='flex'>
-                    <div className='flex h-auto w-30'>
-                        <div className='cursor-move w-10 h-14 items-center mr-2 justify-end flex' ref={ref}
-                             style={{opacity}}>
-                            <div className='justify-center hidden items-center group-hover:flex'>
-                                <DragIndicator/>
-                            </div>
-                        </div>
+                    <div className='flex h-auto w-1/5 min-w-max'>
+                        {renderDragHandle(provided.dragHandleProps)}
                         <div className='flex flex-col h-full items-center'>
                             <img
                                 className="h-12 w-12 rounded-full bg-gray-400 flex items-center justify-center ring-8 ring-white"
@@ -99,9 +53,9 @@ export const Tweet: FC<DragItemProps> = ({tweet, index, moveTweet}) => {
                                 aria-hidden="true"/>
                         </div>
                     </div>
-                    <div className='flex-col flex items-start w-10/12 ml-5'>
-                        <TweetHeader tweet={tweet}/>
-                        <TweetBody tweet={tweet} />
+                    <div className='flex-col flex items-start w-4/5 pl-5' onClick={() => setTweetOfId(item.id)}>
+                        <TweetHeader tweet={item}/>
+                        <TweetBody tweet={item} tweetOfId={tweetOfId}/>
                     </div>
                 </div>
             </div>

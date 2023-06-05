@@ -8,14 +8,8 @@ const {
 } = slice.actions
 
 const addTweet = (params: ITweetProps) => async (dispatch: AppDispatch) => {
-    try {
-        const tweetsList = store.getState().tweets.tweetsList
-        dispatch(setTweetsList([...tweetsList, params]))
-    } catch (error) {
-        // error
-    } finally {
-        // finally
-    }
+    const tweetsList = store.getState().tweets.tweetsList
+    dispatch(setTweetsList([...tweetsList, params]))
 }
 
 const updateTweet = (value: string, params: ITweetProps) => async (dispatch: AppDispatch) => {
@@ -36,14 +30,7 @@ const updateImageOfTweet = (url: string, id: any) => async (dispatch: AppDispatc
 }
 
 const moveTweet = (params: ITweetProps[]) => async (dispatch: AppDispatch) => {
-    try {
-        const tweetsList = store.getState().tweets.tweetsList
-        dispatch(setTweetsList([...params]))
-    } catch (error) {
-        // error
-    } finally {
-        // finally
-    }
+    dispatch(setTweetsList([...params]))
 }
 
 export default {

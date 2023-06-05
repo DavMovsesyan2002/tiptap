@@ -71,15 +71,14 @@ module.exports = {
         },
       ],
       sm: [
-        '16px',
+        '.875rem',
         {
-          lineHeight: '150%',
-          letterSpacing: '0.01em',
-          fontWeight: '400',
+          fontSize: '',
+          lineHeight: '1.25rem',
         },
       ],
       base: [
-        '18px',
+        '1rem',
         {
           lineHeight: '150%',
           letterSpacing: '0.01em',
