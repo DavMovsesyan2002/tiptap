@@ -1,15 +1,12 @@
-import React, {FC, useState, useEffect, ChangeEvent} from 'react';
+import React, {FC, ChangeEvent} from 'react';
 import ImageIcon from "../../assets/images/ImageIcon";
 import {Editor} from "@tiptap/react";
-import {ITweetProps} from "@allTypes/reduxTypes/tweetsStateTypes";
 
 interface ImageUploadInputProps {
     editor: Editor | null,
-    tweet: ITweetProps
 }
 
-const ImageUploadInput: FC<ImageUploadInputProps> = ({ tweet, editor}) => {
-
+const ImageUploadInput: FC<ImageUploadInputProps> = ({ editor}) => {
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         const reader = new FileReader();

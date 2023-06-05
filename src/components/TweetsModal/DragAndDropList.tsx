@@ -24,12 +24,11 @@ const DragAndDropList = () => {
                     <div className='w-full py-9' {...provided.droppableProps} ref={provided.innerRef}>
                         {tweetsList.map((item, index) => (
                             <Draggable key={item.id} draggableId={`${item.id}`} index={index}>
-                                {(provided, snapshot) => (
+                                {(provided) => (
                                     <Tweet
                                         setTweetOfId={setTweetOfId}
                                         tweetOfId={tweetOfId}
                                         provided={provided}
-                                        snapshot={snapshot}
                                         item={item}
                                         index={index}
                                     />

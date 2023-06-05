@@ -8,6 +8,9 @@ const reducers = createReducer({
   setTweetsList(state, action: IAction<ITweetProps[]>) {
     state.tweetsList = action.payload
   },
+  setCount(state, action: IAction<number>) {
+    state.count = action.payload
+  },
 })
 
 export default reducers

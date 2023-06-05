@@ -1,15 +1,38 @@
 import store, {AppDispatch} from '../../store'
 
 import slice from './slice'
-import {ITweetProps, ITweetsProps} from "@allTypes/reduxTypes/tweetsStateTypes";
+import {ITweetProps} from "@allTypes/reduxTypes/tweetsStateTypes";
 
 const {
     setTweetsList,
+    setCount,
 } = slice.actions
 
 const addTweet = (params: ITweetProps) => async (dispatch: AppDispatch) => {
     const tweetsList = store.getState().tweets.tweetsList
     dispatch(setTweetsList([...tweetsList, params]))
+}
+
+const incrementCount = (value: any) => async (dispatch: AppDispatch) => {
+    dispatch(setCount(value))
+}
+
+const removeTweet = (currentIndex: number) => async (dispatch: AppDispatch) => {
+    const tweetsList = store.getState().tweets.tweetsList
+    const nextIndex = tweetsList.findIndex((item, index) => index === currentIndex + 1);
+    const updatedItems = tweetsList.slice();
+    updatedItems.splice(nextIndex, 1);
+
+    dispatch(setTweetsList([...updatedItems]))
+}
+
+const addNewWithOnKeyTweet = (params: ITweetProps, currentIndex: number) => async (dispatch: AppDispatch) => {
+    const tweetsList = store.getState().tweets.tweetsList;
+    const updatedTweetsList = [...tweetsList];
+
+    updatedTweetsList.splice(currentIndex, 0, params);
+
+    dispatch(setTweetsList(updatedTweetsList));
 }
 
 const updateTweet = (value: string, params: ITweetProps) => async (dispatch: AppDispatch) => {
@@ -37,5 +60,8 @@ export default {
     addTweet,
     moveTweet,
     updateTweet,
-    updateImageOfTweet
+    updateImageOfTweet,
+    incrementCount,
+    removeTweet,
+    addNewWithOnKeyTweet
 }

@@ -9,6 +9,10 @@ module.exports = {
       maxWidth: {
         200: '12.5rem',
       },
+      listStyleType: {
+        disc: 'disc',
+        decimal: 'decimal',
+      },
       spacing: {
         7.5: '1.875rem',
         9.75: '2.438rem',

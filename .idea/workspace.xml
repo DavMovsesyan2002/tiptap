@@ -5,25 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85336c0b-6fb9-4103-a5af-3a29c71cf6cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/CircularStd-Book.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/circular-std-medium-500.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/layout/tiptap.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TweetsModal/DragAndDropList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TweetsModal/ListItem.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TweetsModal/MenuBar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/constants.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/layout/tweets.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/layout/tweets.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/DraggableEditorContent.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/fonts/CircularStd-Book.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/fonts/circular-std-medium-500.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/CloseIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/CloseIcon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/layout/dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/layout/dashboard.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/layout/tiptap.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/layout/tiptap.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/DragAndDropList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/DragAndDropList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/ImageUploadInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/ImageUploadInput.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/TooltipButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/TooltipButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/Tweet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/Tweet.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/TweetBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/TweetBody.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/TweetHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/TweetHeader.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/TweetsModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/TweetsModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/slices/tweets/initialState.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/tweets/initialState.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/slices/tweets/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/tweets/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/slices/tweets/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/tweets/reducers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/slices/tweets/selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/tweets/selector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/reduxTypes/tweetsStateTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/reduxTypes/tweetsStateTypes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -95,7 +96,7 @@
       <updated>1685680240593</updated>
       <workItem from="1685680243821" duration="49298000" />
       <workItem from="1685886554980" duration="16693000" />
-      <workItem from="1685911999388" duration="31583000" />
+      <workItem from="1685911999388" duration="43948000" />
     </task>
     <servers />
   </component>
