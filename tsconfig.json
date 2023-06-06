@@ -42,6 +42,6 @@
     "incremental": true,
     "types": ["node"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "scripts/*"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "scripts/*", "tailwind.config.js", "src"],
   "exclude": ["node_modules"]
 }

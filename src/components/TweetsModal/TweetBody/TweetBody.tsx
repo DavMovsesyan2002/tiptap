@@ -1,27 +1,28 @@
-import CircleIcon from "../../assets/images/CircleIcon";
+import React, {FC, useEffect, useState} from 'react'
+import {ITweetProps} from "@allTypes/reduxTypes/tweetsStateTypes";
 import CharacterCount from '@tiptap/extension-character-count'
+import {Color} from '@tiptap/extension-color'
 import Document from '@tiptap/extension-document'
+import Dropcursor from "@tiptap/extension-dropcursor";
+import {Image} from "@tiptap/extension-image";
+import ListItem from '@tiptap/extension-list-item'
 import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
-import {EditorContent, useEditor} from '@tiptap/react'
-import React, {FC, useEffect, useState} from 'react'
-import PlusIcon from "../../assets/images/PlusIcon";
-import TooltipButton from "./TooltipButton";
-import {dispatch, useAppSelector} from "../../redux/hooks";
-import {tweetsMiddleware, tweetsSelector} from "../../redux/slices/tweets";
-import {Image} from "@tiptap/extension-image";
-import Dropcursor from "@tiptap/extension-dropcursor";
-import ImageUploadInput from "src/components/TweetsModal/ImageUploadInput";
-import CloseIcon from "src/assets/images/CloseIcon";
-import {v4 as uuidv4} from 'uuid';
-import {ITweetProps} from "@allTypes/reduxTypes/tweetsStateTypes";
-import MenuBar from "src/components/TweetsModal/MenuBar";
-import {Color} from '@tiptap/extension-color'
 import {TextStyle} from '@tiptap/extension-text-style';
+import {EditorContent, useEditor} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import ListItem from '@tiptap/extension-list-item'
+import CircleIcon from "src/assets/images/CircleIcon";
+import CloseIcon from "src/assets/images/CloseIcon";
+import PlusIcon from "src/assets/images/PlusIcon";
+import ImageUploadInput from "src/components/TweetsModal/ImageUploadInput";
+import MenuBar from "src/components/TweetsModal/MenuBar";
+import {dispatch, useAppSelector} from "src/redux/hooks";
+import {tweetsMiddleware, tweetsSelector} from "src/redux/slices/tweets";
 import middleware from "src/redux/slices/tweets/middleware";
-import {LIMIT} from "../../shared/constants";
+import {v4 as uuidv4} from 'uuid';
+
+import {LIMIT} from "../../../shared/constants";
+import TooltipButton from "../TooltipButton";
 
 interface ITweetBodyProps {
     tweet: ITweetProps
@@ -35,38 +36,6 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
     const uuid = uuidv4();
     const [showCircle, setShowCircle] = useState<boolean>(true)
     const [characterCount, setCharacterCount] = useState(0);
-
-    const handleKeyTwice = (event: React.KeyboardEvent<HTMLDivElement>) => {
-        if (count >= 2 && editorTextarea && event.key === 'Enter') {
-            dispatch(tweetsMiddleware.addNewWithOnKeyTweet(
-                {
-                    name: 'Sergeiee',
-                    userName: '@Sergei757063608',
-                    text: '',
-                    id: uuid,
-                    imageURL: '',
-                },
-                index + 1
-            ))
-            dispatch(middleware.incrementCount(0))
-        }
-        if (count <= -2 && editorTextarea && event.key === 'Backspace') {
-            dispatch(tweetsMiddleware.removeTweet(index - 1))
-            dispatch(middleware.incrementCount(0))
-        }
-    }
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-        if (event.key === 'Enter') {
-            dispatch(middleware.incrementCount(count + 1))
-            handleKeyTwice(event);
-        } else if (event.key === 'Backspace' && editorTextarea && !editorTextarea.state.doc.textContent.length && tweetsList.length > 1) {
-            dispatch(middleware.incrementCount(count - 1))
-            handleKeyTwice(event);
-        } else {
-            dispatch(middleware.incrementCount(0))
-        }
-    };
 
     const editorTextarea = useEditor({
         extensions: [
@@ -95,6 +64,39 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
         content: ``,
     })
 
+    const handleKeyTwice = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (count >= 2 && editorTextarea && event.key === 'Enter') {
+            dispatch(tweetsMiddleware.addNewWithOnKeyTweet(
+                {
+                    name: 'Sergeiee',
+                    userName: '@Sergei757063608',
+                    text: '',
+                    id: uuid,
+                    imageURL: '',
+                },
+                index + 1
+            ))
+            dispatch(middleware.incrementCount(0))
+        }
+
+        if (count <= -2 && editorTextarea && event.key === 'Backspace') {
+            dispatch(tweetsMiddleware.removeTweet(index - 1))
+            dispatch(middleware.incrementCount(0))
+        }
+    }
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'Enter') {
+            dispatch(middleware.incrementCount(count + 1))
+            handleKeyTwice(event);
+        } else if (event.key === 'Backspace' && editorTextarea && !editorTextarea.state.doc.textContent.length && tweetsList.length > 1) {
+            dispatch(middleware.incrementCount(count - 1))
+            handleKeyTwice(event);
+        } else {
+            dispatch(middleware.incrementCount(0))
+        }
+    };
+
     const editorImage = useEditor({
         extensions: [Document, Paragraph, Text, Image, Dropcursor, CharacterCount.configure({
             limit: LIMIT,
@@ -102,6 +104,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
         content: ``,
         onUpdate({editor}) {
             const imageNode = editor.getAttributes('image');
+
             if (imageNode && imageNode.src) {
                 dispatch(tweetsMiddleware.updateImageOfTweet(imageNode.src, tweetOfId))
             }
@@ -111,9 +114,11 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
     useEffect(() => {
         if (editorTextarea) {
             const updateCharacterCount = () => {
-                const content = editorTextarea.getJSON().content;
+                const {content} = editorTextarea.getJSON();
+
                 if (content) {
                     const text = content.map((node) => node.text).join(' ');
+
                     setCharacterCount(text.length);
                 }
             };
@@ -125,6 +130,10 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
                 editorTextarea.off('update', updateCharacterCount);
             };
         }
+
+        return () => {
+            // Clean up logic, if needed
+        };
     }, [editorTextarea]);
 
     const percentage = editorTextarea
@@ -145,7 +154,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
 
     const handleDeleteImage = () => {
         if (editorImage) {
-            dispatch(tweetsMiddleware.updateImageOfTweet('', tweet))
+            dispatch(tweetsMiddleware.updateImageOfTweet('', tweet.id))
             editorImage.commands.setContent('');
         }
     }
@@ -168,7 +177,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
             <div className='mt-5 outline-none w-full'>
                 <MenuBar editor={editorTextarea}/>
                 <div className='mt-5'>
-                    <EditorContent onKeyDown={handleKeyDown} className={`text-field break-words`}
+                    <EditorContent onKeyDown={handleKeyDown} className="text-field break-words"
                                    editor={editorTextarea}/>
                 </div>
                 <div className={`relative ${!editorImage?.getCharacterCount() && 'hidden'}`}>
@@ -187,6 +196,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
                     <TooltipButton
                         tooltipTitle={`${editorTextarea.state.doc.textContent.length + characterCount}/280`}>
                         <button
+                            type="button"
                             className={`flex transition-all transition ease-in-out delay-50 items-center focus:outline-none hover:-translate-y-1 hover:scale-110 h-5 w-5  ${editorTextarea.state.doc.textContent.length + characterCount > LIMIT ? 'text-rose-400' : 'text-blue-400'}`}
                             data-tooltip={`${editorTextarea.state.doc.textContent.length + characterCount}/${LIMIT}`}
                             onClick={() => setShowCircle(!showCircle)}>
@@ -202,7 +212,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
                         <button onClick={handleAddNewTweet} type="button" className='focus:outline-none'>
                             <div
                                 className='h-5 w-5 text-gray-300 hover:text-blue-400 transition-all transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 duration-300'>
-                                <PlusIcon/>
+                                <PlusIcon />
                             </div>
                         </button>
                     </TooltipButton>

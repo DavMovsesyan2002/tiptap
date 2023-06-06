@@ -1,7 +1,8 @@
+import {ITweetProps} from "@allTypes/reduxTypes/tweetsStateTypes";
+
 import store, {AppDispatch} from '../../store'
 
 import slice from './slice'
-import {ITweetProps} from "@allTypes/reduxTypes/tweetsStateTypes";
 
 const {
     setTweetsList,
@@ -9,25 +10,27 @@ const {
 } = slice.actions
 
 const addTweet = (params: ITweetProps) => async (dispatch: AppDispatch) => {
-    const tweetsList = store.getState().tweets.tweetsList
+    const {tweetsList} = store.getState().tweets
+
     dispatch(setTweetsList([...tweetsList, params]))
 }
 
-const incrementCount = (value: any) => async (dispatch: AppDispatch) => {
+const incrementCount = (value: number) => async (dispatch: AppDispatch) => {
     dispatch(setCount(value))
 }
 
 const removeTweet = (currentIndex: number) => async (dispatch: AppDispatch) => {
-    const tweetsList = store.getState().tweets.tweetsList
+    const {tweetsList} = store.getState().tweets
     const nextIndex = tweetsList.findIndex((item, index) => index === currentIndex + 1);
     const updatedItems = tweetsList.slice();
+
     updatedItems.splice(nextIndex, 1);
 
     dispatch(setTweetsList([...updatedItems]))
 }
-
+ 
 const addNewWithOnKeyTweet = (params: ITweetProps, currentIndex: number) => async (dispatch: AppDispatch) => {
-    const tweetsList = store.getState().tweets.tweetsList;
+    const {tweetsList} = store.getState().tweets;
     const updatedTweetsList = [...tweetsList];
 
     updatedTweetsList.splice(currentIndex, 0, params);
@@ -37,15 +40,15 @@ const addNewWithOnKeyTweet = (params: ITweetProps, currentIndex: number) => asyn
 
 const updateTweet = (value: string, params: ITweetProps) => async (dispatch: AppDispatch) => {
     const {id} = params
-    const tweetsList = store.getState().tweets.tweetsList
+    const {tweetsList} = store.getState().tweets
 
     const updateTweetsList = tweetsList.map((item) => item.id === id ? {...item, text: value} : item);
 
     dispatch(setTweetsList([...updateTweetsList]))
 }
 
-const updateImageOfTweet = (url: string, id: any) => async (dispatch: AppDispatch) => {
-    const tweetsList = store.getState().tweets.tweetsList
+const updateImageOfTweet = (url: string, id: string) => async (dispatch: AppDispatch) => {
+    const {tweetsList} = store.getState().tweets
 
     const updateTweetsList = tweetsList.map((item) => item.id === id ? {...item, imageURL: url} : item);
 

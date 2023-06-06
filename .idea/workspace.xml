@@ -5,27 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85336c0b-6fb9-4103-a5af-3a29c71cf6cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/shared/constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/fonts/CircularStd-Book.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/fonts/circular-std-medium-500.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/CircleIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/CircleIcon.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/images/CloseIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/CloseIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/layout/dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/layout/dashboard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/layout/tiptap.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/layout/tiptap.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/DragIndicator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/DragIndicator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/ImageIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/ImageIcon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/PlusIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/PlusIcon.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/DragAndDropList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/DragAndDropList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/ImageUploadInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/ImageUploadInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/MenuBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/MenuBar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/TooltipButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/TooltipButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/Tweet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/Tweet.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/TweetBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/TweetBody.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/TweetBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/TweetBody/TweetBody.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/TweetsModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/TweetsModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/slices/tweets/initialState.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/tweets/initialState.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/slices/tweets/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/tweets/middleware.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/slices/tweets/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/tweets/reducers.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/slices/tweets/selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/tweets/selector.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/reduxTypes/tweetsStateTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/reduxTypes/tweetsStateTypes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +40,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -45,13 +57,17 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -64,6 +80,7 @@
       <recent name="$PROJECT_DIR$/src/components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/TweetsModal/TweetBody" />
       <recent name="$PROJECT_DIR$/src/assets/fonts" />
       <recent name="$PROJECT_DIR$/src/assets/images" />
       <recent name="$PROJECT_DIR$/src/components/write" />
@@ -96,7 +113,19 @@
       <updated>1685680240593</updated>
       <workItem from="1685680243821" duration="49298000" />
       <workItem from="1685886554980" duration="16693000" />
-      <workItem from="1685911999388" duration="43948000" />
+      <workItem from="1685911999388" duration="49278000" />
+      <workItem from="1686048571684" duration="820000" />
+      <workItem from="1686049414303" duration="468000" />
+      <workItem from="1686049887029" duration="1430000" />
+      <workItem from="1686051336604" duration="799000" />
+      <workItem from="1686052335532" duration="411000" />
+      <workItem from="1686052776028" duration="1410000" />
+      <workItem from="1686054276384" duration="2329000" />
+      <workItem from="1686056839689" duration="548000" />
+      <workItem from="1686057447897" duration="693000" />
+      <workItem from="1686058181508" duration="259000" />
+      <workItem from="1686058462927" duration="748000" />
+      <workItem from="1686059246354" duration="300000" />
     </task>
     <servers />
   </component>

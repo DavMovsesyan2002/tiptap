@@ -1,6 +1,7 @@
-import React, {FC, ChangeEvent} from 'react';
-import ImageIcon from "../../assets/images/ImageIcon";
+import React, {ChangeEvent,FC} from 'react';
 import {Editor} from "@tiptap/react";
+
+import ImageIcon from "../../assets/images/ImageIcon";
 
 interface ImageUploadInputProps {
     editor: Editor | null,
@@ -10,12 +11,15 @@ const ImageUploadInput: FC<ImageUploadInputProps> = ({ editor}) => {
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         const reader = new FileReader();
+
         reader.onload = () => {
             const imageDataURL = reader.result as string;
+
             if (editor && imageDataURL) {
                 editor.chain().focus().setImage({ src: imageDataURL }).run();
             }
         };
+
         if(file){
             reader.readAsDataURL(file);
         }

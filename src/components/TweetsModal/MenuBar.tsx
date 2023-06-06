@@ -1,14 +1,20 @@
-import React from 'react'
+import React from 'react';
+import { Editor } from '@tiptap/core';
 
-const MenuBar = ({editor}: any) => {
+interface MenuBarProps {
+    editor: Editor | null;
+}
+
+const MenuBar: React.FC<MenuBarProps> = ({ editor }) => {
     if (!editor) {
-        return null
+        return null;
     }
 
     return (
         <div className='mb-2 flex'>
             <div className='mr-2'>
                 <button
+                    type="button"
                     onClick={() => editor.chain().focus().toggleBold().run()}
                     disabled={
                         !editor.can()
@@ -17,9 +23,7 @@ const MenuBar = ({editor}: any) => {
                             .toggleBold()
                             .run()
                     }
-                    className={`${editor.isActive('bold') ? 'is-active bg-black text-white' : 'border-solid border border-black'} rounded-md
-
- p-1`}
+                    className={`${editor.isActive('bold') ? 'is-active bg-black text-white' : 'border-solid border border-black'} rounded-md p-1`}
                 >
                     bold
                 </button>
@@ -27,6 +31,7 @@ const MenuBar = ({editor}: any) => {
             <div className='mr-2'>
 
                 <button
+                    type="button"
                     onClick={() => editor.chain().focus().toggleItalic().run()}
                     disabled={
                         !editor.can()
@@ -35,29 +40,25 @@ const MenuBar = ({editor}: any) => {
                             .toggleItalic()
                             .run()
                     }
-                    className={`${editor.isActive('italic') ? 'is-active bg-black text-white' : 'border-solid border border-black'} rounded-md
-
- p-1`}
+                    className={`${editor.isActive('italic') ? 'is-active bg-black text-white' : 'border-solid border border-black'} rounded-md p-1`}
                 >
                     italic
                 </button>
             </div>
             <div className='mr-2'>
                 <button
+                    type="button"
                     onClick={() => editor.chain().focus().toggleBulletList().run()}
-                    className={`${editor.isActive('bulletList') ? 'is-active bg-black text-white' : 'border-solid border border-black'} rounded-md
-
- p-1`}
+                    className={`${editor.isActive('bulletList') ? 'is-active bg-black text-white' : 'border-solid border border-black'} rounded-md p-1`}
                 >
                     bullet list
                 </button>
             </div>
-            <div className={`mr-2`}>
+            <div className="mr-2">
                 <button
+                    type="button"
                     onClick={() => editor.chain().focus().toggleOrderedList().run()}
-                    className={`${editor.isActive('orderedList') ? 'is-active bg-black text-white' : 'border-solid border border-black'} rounded-md
-
- p-1`}
+                    className={`${editor.isActive('orderedList') ? 'is-active bg-black text-white' : 'border-solid border border-black'} rounded-md p-1`}
                 >
                     ordered list
                 </button>
