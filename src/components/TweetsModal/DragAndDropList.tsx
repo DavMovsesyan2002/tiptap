@@ -6,7 +6,8 @@ import {tweetsMiddleware, tweetsSelector} from "src/redux/slices/tweets";
 
 const DragAndDropList = () => {
     const tweetsList = useAppSelector(tweetsSelector.tweetsList)
-    const [tweetOfId, setTweetOfId] = useState<string>('')
+    const tweetOfId = useAppSelector(tweetsSelector.tweetOfId)
+    
     const onDragEnd = (result: DropResult) => {
         if (result.destination) {
             const newItems = Array.from(tweetsList);
@@ -26,7 +27,6 @@ const DragAndDropList = () => {
                             <Draggable key={item.id} draggableId={`${item.id}`} index={index}>
                                 {(draggableProvided) => (
                                     <Tweet
-                                        setTweetOfId={setTweetOfId}
                                         tweetOfId={tweetOfId}
                                         provided={draggableProvided}
                                         item={item}

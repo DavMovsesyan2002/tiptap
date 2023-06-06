@@ -53,13 +53,16 @@ module.exports = {
         'no-underscore-dangle': 'off',
         curly: ['error', 'all'],
         'func-style': 'error',
-        "import/no-extraneous-dependencies": [
-            "error", {
-                "devDependencies": false,
-                "optionalDependencies": false,
-                "peerDependencies": false,
-                "packageDir": "./"
-            }
+        'import/no-extraneous-dependencies': [
+            'error',
+            {
+                devDependencies: [
+                    ...airbnbRules['import/no-extraneous-dependencies'][1].devDependencies,
+                    'config/**/*',
+                    'scripts/**/*',
+                    'dangerfile.ts',
+                ],
+            },
         ],
         'simple-import-sort/exports': 'error',
         'simple-import-sort/imports': [

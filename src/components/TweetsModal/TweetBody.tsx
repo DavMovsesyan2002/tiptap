@@ -18,11 +18,10 @@ import ImageUploadInput from "src/components/TweetsModal/ImageUploadInput";
 import MenuBar from "src/components/TweetsModal/MenuBar";
 import {dispatch, useAppSelector} from "src/redux/hooks";
 import {tweetsMiddleware, tweetsSelector} from "src/redux/slices/tweets";
-import middleware from "src/redux/slices/tweets/middleware";
 import {v4 as uuidv4} from 'uuid';
 
-import {LIMIT} from "../../../shared/constants";
-import TooltipButton from "../TooltipButton";
+import {LIMIT} from "../../shared/constants";
+import TooltipButton from "./TooltipButton";
 
 interface ITweetBodyProps {
     tweet: ITweetProps
@@ -36,6 +35,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
     const uuid = uuidv4();
     const [showCircle, setShowCircle] = useState<boolean>(true)
     const [characterCount, setCharacterCount] = useState(0);
+    const tweetOfIndex = useAppSelector(tweetsSelector.tweetOfIndex);
 
     const editorTextarea = useEditor({
         extensions: [
@@ -68,7 +68,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
         if (count >= 2 && editorTextarea && event.key === 'Enter') {
             dispatch(tweetsMiddleware.addNewWithOnKeyTweet(
                 {
-                    name: 'Sergeiee',
+                    name: 'Sergei',
                     userName: '@Sergei757063608',
                     text: '',
                     id: uuid,
@@ -76,24 +76,24 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
                 },
                 index + 1
             ))
-            dispatch(middleware.incrementCount(0))
+            dispatch(tweetsMiddleware.incrementCount(0))
         }
 
         if (count <= -2 && editorTextarea && event.key === 'Backspace') {
             dispatch(tweetsMiddleware.removeTweet(index - 1))
-            dispatch(middleware.incrementCount(0))
+            dispatch(tweetsMiddleware.incrementCount(0))
         }
     }
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
         if (event.key === 'Enter') {
-            dispatch(middleware.incrementCount(count + 1))
+            dispatch(tweetsMiddleware.incrementCount(count + 1))
             handleKeyTwice(event);
         } else if (event.key === 'Backspace' && editorTextarea && !editorTextarea.state.doc.textContent.length && tweetsList.length > 1) {
-            dispatch(middleware.incrementCount(count - 1))
+            dispatch(tweetsMiddleware.incrementCount(count - 1))
             handleKeyTwice(event);
         } else {
-            dispatch(middleware.incrementCount(0))
+            dispatch(tweetsMiddleware.incrementCount(0))
         }
     };
 
@@ -130,10 +130,6 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
                 editorTextarea.off('update', updateCharacterCount);
             };
         }
-
-        return () => {
-            // Clean up logic, if needed
-        };
     }, [editorTextarea]);
 
     const percentage = editorTextarea
@@ -162,14 +158,21 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
     useEffect(() => {
         if (editorTextarea && tweetOfId) {
             editorTextarea.view.focus()
+            dispatch(tweetsMiddleware.updateTweetOfId(tweetsList[index].id))
         }
     }, [editorTextarea])
 
     useEffect(() => {
-        if (editorTextarea && tweetOfId && tweetsList.length - 1 === index) {
+        if (editorTextarea && tweetOfId && index + 1 === tweetOfIndex) {
             editorTextarea.view.focus()
+            dispatch(tweetsMiddleware.updateTweetOfId(tweetsList[index].id))
+            dispatch(tweetsMiddleware.updateTweetOfIndex(index))
+        } else if(editorTextarea && tweetOfId && 0 === index){
+            editorTextarea.view.focus()
+            dispatch(tweetsMiddleware.updateTweetOfId(tweetsList[index].id))
+            dispatch(tweetsMiddleware.updateTweetOfIndex(index))
         }
-    }, [tweetsList.length ])
+    }, [editorTextarea, index, tweetsList.length])
 
 
     return (
@@ -185,7 +188,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index}) => {
                          className="h-6 w-6 absolute top-2 z-10 cursor-pointer left-2 p-px transition bg-gray-800 hover:bg-gray-700 rounded-full hover:scale-125">
                         <CloseIcon/>
                     </div>
-                    <EditorContent className='mt-3 text-field rounded-lg object-cover shadow-lg border border-2'
+                    <EditorContent className='mt-3 text-field rounded-lg object-cover shadow-lg border-2'
                                    editor={editorImage}/>
                 </div>
             </div>

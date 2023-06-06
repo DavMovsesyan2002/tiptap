@@ -1,6 +1,8 @@
 export interface ITweetsProps {
     tweetsList: ITweetProps[]
     count: number
+    tweetOfId: string
+    tweetOfIndex: number
 }
 
 export interface ITweetProps{

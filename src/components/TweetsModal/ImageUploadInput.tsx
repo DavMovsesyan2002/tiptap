@@ -23,6 +23,8 @@ const ImageUploadInput: FC<ImageUploadInputProps> = ({ editor}) => {
         if(file){
             reader.readAsDataURL(file);
         }
+
+        e.target.value = ""
     };
 
 

@@ -7,6 +7,8 @@ import slice from './slice'
 const {
     setTweetsList,
     setCount,
+    setTweetOfId,
+    setTweetOfIndex
 } = slice.actions
 
 const addTweet = (params: ITweetProps) => async (dispatch: AppDispatch) => {
@@ -14,6 +16,15 @@ const addTweet = (params: ITweetProps) => async (dispatch: AppDispatch) => {
 
     dispatch(setTweetsList([...tweetsList, params]))
 }
+
+const updateTweetOfId = (value: string) => async (dispatch: AppDispatch) => {
+    dispatch(setTweetOfId(value))
+}
+
+const updateTweetOfIndex = (value: number) => async (dispatch: AppDispatch) => {
+    dispatch(setTweetOfIndex(value))
+}
+
 
 const incrementCount = (value: number) => async (dispatch: AppDispatch) => {
     dispatch(setCount(value))
@@ -34,7 +45,6 @@ const addNewWithOnKeyTweet = (params: ITweetProps, currentIndex: number) => asyn
     const updatedTweetsList = [...tweetsList];
 
     updatedTweetsList.splice(currentIndex, 0, params);
-
     dispatch(setTweetsList(updatedTweetsList));
 }
 
@@ -66,5 +76,7 @@ export default {
     updateImageOfTweet,
     incrementCount,
     removeTweet,
-    addNewWithOnKeyTweet
+    updateTweetOfId,
+    addNewWithOnKeyTweet,
+    updateTweetOfIndex
 }

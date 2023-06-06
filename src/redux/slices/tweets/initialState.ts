@@ -8,6 +8,8 @@ export const getInitialState = (): ITweetsProps => ({
             id: '1',
             imageURL: '',
         }],
+        tweetOfId: '',
+        tweetOfIndex: 0,
         count: 0
     }
 )

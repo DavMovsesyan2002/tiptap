@@ -1,36 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="85336c0b-6fb9-4103-a5af-3a29c71cf6cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+    <list default="true" id="9f92cf00-dc99-41bc-a9ad-e64ee71d7a52" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/tiptap.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/CircleIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/CircleIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/CloseIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/CloseIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/DragIndicator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/DragIndicator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/ImageIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/ImageIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/PlusIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/PlusIcon.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/DragAndDropList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/DragAndDropList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/ImageUploadInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/ImageUploadInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/MenuBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/MenuBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/TooltipButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/TooltipButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/ListItem.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/Tweet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/Tweet.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/TweetBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/TweetBody/TweetBody.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/TweetsModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/TweetsModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/TweetBody/TweetBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/TweetBody.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/slices/tweets/initialState.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/tweets/initialState.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/slices/tweets/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/tweets/middleware.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/slices/tweets/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/tweets/reducers.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/slices/tweets/selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/tweets/selector.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/reduxTypes/tweetsStateTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/reduxTypes/tweetsStateTypes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,100 +42,19 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2QdOxrq3CuHVSuNlGi8ygjjKO6y" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.standard" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.standard" value="" />
-    <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
-    <property name="vue.rearranger.settings.migration" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/TweetsModal" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/redux/slices" />
-      <recent name="$PROJECT_DIR$/src/redux" />
-      <recent name="$PROJECT_DIR$/src/assets/images" />
-      <recent name="$PROJECT_DIR$/src/assets/scss" />
-      <recent name="$PROJECT_DIR$/src/components" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components/TweetsModal/TweetBody" />
-      <recent name="$PROJECT_DIR$/src/assets/fonts" />
-      <recent name="$PROJECT_DIR$/src/assets/images" />
-      <recent name="$PROJECT_DIR$/src/components/write" />
+      <recent name="$PROJECT_DIR$/src/components/TweetsModal" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.build" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="85336c0b-6fb9-4103-a5af-3a29c71cf6cb" name="Changes" comment="" />
-      <created>1685680240593</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1685680240593</updated>
-      <workItem from="1685680243821" duration="49298000" />
-      <workItem from="1685886554980" duration="16693000" />
-      <workItem from="1685911999388" duration="49278000" />
-      <workItem from="1686048571684" duration="820000" />
-      <workItem from="1686049414303" duration="468000" />
-      <workItem from="1686049887029" duration="1430000" />
-      <workItem from="1686051336604" duration="799000" />
-      <workItem from="1686052335532" duration="411000" />
-      <workItem from="1686052776028" duration="1410000" />
-      <workItem from="1686054276384" duration="2329000" />
-      <workItem from="1686056839689" duration="548000" />
-      <workItem from="1686057447897" duration="693000" />
-      <workItem from="1686058181508" duration="259000" />
-      <workItem from="1686058462927" duration="748000" />
-      <workItem from="1686059246354" duration="300000" />
-    </task>
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

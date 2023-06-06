@@ -11,6 +11,12 @@ const reducers = createReducer({
     setCount(state, action: IAction<number>) {
         state.count = action.payload
     },
+    setTweetOfId(state, action: IAction<string>) {
+        state.tweetOfId = action.payload
+    },
+    setTweetOfIndex(state, action: IAction<number>) {
+        state.tweetOfIndex = action.payload
+    },
 })
 
 
