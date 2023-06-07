@@ -1,5 +1,5 @@
 import React, {ChangeEvent,FC} from 'react';
-import {Editor} from "@tiptap/react";
+import {Editor} from "@tiptap/core";
 
 import ImageIcon from "../../assets/images/ImageIcon";
 

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {DragDropContext, Draggable, Droppable, DropResult} from "react-beautiful-dnd";
 import {Tweet} from "src/components/TweetsModal/Tweet";
 import {dispatch, useAppSelector} from "src/redux/hooks";

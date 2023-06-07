@@ -3,8 +3,9 @@ import { DraggableProvided, DraggableProvidedDragHandleProps } from 'react-beaut
 import { ITweetProps } from '@allTypes/reduxTypes/tweetsStateTypes';
 import DragIndicator from 'src/assets/images/DragIndicator';
 import TweetHeader from 'src/components/TweetsModal/TweetHeader';
-import { useAppSelector,dispatch } from 'src/redux/hooks';
-import { tweetsSelector, tweetsMiddleware } from 'src/redux/slices/tweets';
+import { dispatch,useAppSelector } from 'src/redux/hooks';
+import { tweetsMiddleware,tweetsSelector } from 'src/redux/slices/tweets';
+
 import Profile from '../../assets/images/profile.png';
 
 import TweetBody from './TweetBody';
@@ -18,39 +19,37 @@ interface DragItemProps {
 
 export const Tweet: React.FC<DragItemProps> = ({provided, item, tweetOfId, index}) => {
     const tweetsList = useAppSelector(tweetsSelector.tweetsList);
-    
+
     const handleDragStart = useCallback((e: React.DragEvent<HTMLDivElement>) => {
         e.stopPropagation();
     }, []);
 
-    const handleClick = () => {
+    const handleClickUpdateTweetOfIdAndIndex = () => {
         dispatch(tweetsMiddleware.updateTweetOfId(item.id))
-        dispatch(tweetsMiddleware.updateTweetOfIndex(index))
+        dispatch(tweetsMiddleware.updateTweetOfIndex(index - 1))
     };
 
-    const handleKeyDown = useCallback(
-        (e: React.KeyboardEvent<HTMLDivElement>) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                handleClick();
-            }
-        },
-        [handleClick]
-    );
+    const renderDragHandle = (dragHandleProps?: DraggableProvidedDragHandleProps | null) => {
+        if (dragHandleProps === undefined) {
+            return null
+        }
 
-    const renderDragHandle = (dragHandleProps: DraggableProvidedDragHandleProps | null | undefined) => (
-        <div onDragStart={handleDragStart} draggable={Boolean(dragHandleProps)} {...dragHandleProps}
-             className='drag-handle cursor-move w-10 h-14 items-center mr-2 justify-end flex'>
-            <div className='justify-center hidden items-center group-hover:flex'>
-                <DragIndicator/>
+        return (
+            <div
+                onDragStart={handleDragStart}
+                draggable={Boolean(dragHandleProps)}
+                {...dragHandleProps}
+                className='drag-handle cursor-move w-10 h-14 items-center mr-2 justify-end flex'
+            >
+                <div className='justify-center hidden items-center group-hover:flex'>
+                    <DragIndicator/>
+                </div>
             </div>
-        </div>
-    );
-
-
+        );
+    };
 
     return (
-        <div key={item.id} ref={provided.innerRef} onClick={handleClick}
-             {...provided.draggableProps}>
+        <div key={item.id} ref={provided.innerRef} {...provided.draggableProps}>
             <div className="px-12 group">
                 <div className="flex">
                     <div className="flex h-auto w-1/5 min-w-max">
@@ -71,7 +70,7 @@ export const Tweet: React.FC<DragItemProps> = ({provided, item, tweetOfId, index
                     </div>
                     <div className="flex-col flex items-start w-4/5 pl-5">
                         <TweetHeader tweet={item} />
-                        <TweetBody tweet={item} tweetOfId={tweetOfId} index={index} />
+                        <TweetBody handleClick={handleClickUpdateTweetOfIdAndIndex} tweet={item} tweetOfId={tweetOfId} index={index} />
                     </div>
                 </div>
             </div>
