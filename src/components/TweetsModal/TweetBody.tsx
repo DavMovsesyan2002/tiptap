@@ -138,6 +138,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index, handleClick}) 
 
     useEffect(() => {
         UpdateTweetIdAndIndex()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [editorTextarea])
 
     useEffect(() => {
@@ -146,6 +147,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index, handleClick}) 
         } else if (editorTextarea && index === 0) {
             SetZeroOfTweetIdAndIndex()
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [editorTextarea, index, tweetsList.length])
 
 

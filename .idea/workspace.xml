@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f92cf00-dc99-41bc-a9ad-e64ee71d7a52" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TweetsModal/Editor/useEditorTextarea.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TweetsModal/TweetFooter.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/tweetUtils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/DragAndDropList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/DragAndDropList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/ImageUploadInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/ImageUploadInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/Tweet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/Tweet.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TweetsModal/TweetBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TweetsModal/TweetBody.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +65,7 @@
       <updated>1686072709937</updated>
       <workItem from="1686072711328" duration="10467000" />
       <workItem from="1686130843367" duration="2280000" />
-      <workItem from="1686133414541" duration="282000" />
+      <workItem from="1686133414541" duration="1311000" />
     </task>
     <servers />
   </component>
