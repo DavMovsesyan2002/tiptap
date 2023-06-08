@@ -7,9 +7,9 @@ interface ITweetHeaderProps {
 
 
 const TweetHeader: FC<ITweetHeaderProps> = ({tweet}) => (
-    <div className='flex items-center'>
-        <div className='leading-6 text-base font-bold'>{tweet.name}</div>
-        <div className='user-name text-sm ml-1'>{tweet.userName}</div>
+    <div className='flex items-center text-sm'>
+        <div className='font-bold text-gray-900 tracking-wide select-none text-base mr-0.5 font-circular'>{tweet.name}</div>
+        <div className='ml-1 text-gray-500 select-none'>{tweet.userName}</div>
     </div>
 )
 

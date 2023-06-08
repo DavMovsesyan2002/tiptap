@@ -1,14 +1,8 @@
 import React from 'react'
-import {DndProvider} from 'react-dnd';
-import {HTML5Backend} from 'react-dnd-html5-backend';
-import DraggableEditorContent from './DraggableEditorContent';
+import DragAndDropList from "src/components/TweetsModal/DragAndDropList";
 
-export const TweetsModal = () => {
-    return (
-        <div className='w-full absolute right-0 bg-white h-full overflow-y-auto write-modal-container'>
-            <DndProvider backend={HTML5Backend}>
-                <DraggableEditorContent/>
-            </DndProvider>
+export const TweetsModal = () => ( 
+        <div className='w-full absolute right-0 bg-white h-full overflow-y-auto write-modal-container font-circular'>
+            <DragAndDropList/>
         </div>
     )
-}

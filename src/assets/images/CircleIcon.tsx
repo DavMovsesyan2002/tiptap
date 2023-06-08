@@ -1,3 +1,5 @@
+import React from 'react'
+
 const CircleIcon = ({percentage} : {percentage: number}) => (
     <svg
         viewBox="0 0 20 20"

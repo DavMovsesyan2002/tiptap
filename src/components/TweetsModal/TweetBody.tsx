@@ -1,69 +1,108 @@
-import CircleIcon from "../../assets/images/CircleIcon";
+import React, {FC, useEffect, useState} from 'react'
+import {ITweetProps} from "@allTypes/reduxTypes/tweetsStateTypes";
 import CharacterCount from '@tiptap/extension-character-count'
 import Document from '@tiptap/extension-document'
+import Dropcursor from "@tiptap/extension-dropcursor";
+import {Image} from "@tiptap/extension-image";
 import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
 import {EditorContent, useEditor} from '@tiptap/react'
-import React, {FC, useEffect, useState} from 'react'
-import PlusIcon from "../../assets/images/PlusIcon";
-import TooltipButton from "./TooltipButton";
-import {dispatch} from "../../redux/hooks";
-import {tweetsMiddleware} from "../../redux/slices/tweets";
-import {Image} from "@tiptap/extension-image";
-import Dropcursor from "@tiptap/extension-dropcursor";
-import ImageUploadInput from "src/components/TweetsModal/ImageUploadInput";
 import CloseIcon from "src/assets/images/CloseIcon";
+import useEditorTextarea from "src/components/TweetsModal/Editor/useEditorTextarea";
+import MenuBar from "src/components/TweetsModal/MenuBar";
+import TweetFooter from "src/components/TweetsModal/TweetFooter";
+import {dispatch, useAppSelector} from "src/redux/hooks";
+import {tweetsMiddleware, tweetsSelector} from "src/redux/slices/tweets";
+import {createNewTweetObject} from "src/utils/tweetUtils";
 import {v4 as uuidv4} from 'uuid';
-import {ITweetProps} from "@allTypes/reduxTypes/tweetsStateTypes";
+
+import {LIMIT} from "../../shared/constants";
 
 interface ITweetBodyProps {
     tweet: ITweetProps
+    tweetOfId: string
+    index: number
+    handleClick: () => void
 }
 
-const TweetBody: FC<ITweetBodyProps> = ({tweet}) => {
+const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index, handleClick}) => {
+    const count = useAppSelector(tweetsSelector.count)
+    const tweetsList = useAppSelector(tweetsSelector.tweetsList)
     const uuid = uuidv4();
-    const limit = 280
-    const [showCircle, setShowCircle] = useState<boolean>(true)
+    const [characterCount, setCharacterCount] = useState(0);
+    const tweetOfIndex = useAppSelector(tweetsSelector.tweetOfIndex);
 
+    const editorTextarea = useEditorTextarea({tweet});
 
-    const editorTextarea = useEditor({
-        extensions: [
-            Document,
-            Paragraph,
-            Text.configure({
-                HTMLAttributes: {
-                    rows: 5,
-                },
-            }),
-            CharacterCount.configure({
-                limit,
-            }),
-        ],
-        onUpdate({editor}) {
-            dispatch(tweetsMiddleware.updateTweet(editor.getText(), tweet))
-        },
-        content: ``,
-    })
+    const handleKeyTwice = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (count >= 2 && editorTextarea && event.key === 'Enter') {
+            dispatch(tweetsMiddleware.addNewWithOnKeyTweet(
+                createNewTweetObject({uuid}),
+                index + 1
+            ))
+            dispatch(tweetsMiddleware.incrementCount(0))
+        }
+
+        if (count <= -2 && editorTextarea && event.key === 'Backspace') {
+            dispatch(tweetsMiddleware.removeTweet(index - 1))
+            dispatch(tweetsMiddleware.incrementCount(0))
+        }
+    }
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'Enter') {
+            dispatch(tweetsMiddleware.incrementCount(count + 1))
+            handleKeyTwice(event);
+        } else if (event.key === 'Backspace' && editorTextarea && !editorTextarea.state.doc.textContent.length && tweetsList.length > 1) {
+            dispatch(tweetsMiddleware.incrementCount(count - 1))
+            handleKeyTwice(event);
+        } else {
+            dispatch(tweetsMiddleware.incrementCount(0))
+        }
+    };
 
     const editorImage = useEditor({
-        extensions: [Document, Paragraph, Text, Image, Dropcursor],
+        extensions: [Document, Paragraph, Text, Image, Dropcursor, CharacterCount.configure({
+            limit: LIMIT,
+        }),],
         content: ``,
+        onUpdate({editor}) {
+            const imageNode = editor.getAttributes('image');
+
+            if (imageNode && imageNode.src) {
+                dispatch(tweetsMiddleware.updateImageOfTweet(imageNode.src, tweetOfId))
+            }
+        },
     })
 
     useEffect(() => {
-        if (editorTextarea && tweet.text) {
-            editorTextarea.chain().setContent(tweet.text).run();
+        if (editorTextarea) {
+            const updateCharacterCount = () => {
+                const {content} = editorTextarea.getJSON();
+
+                if (content) {
+                    const text = content.map((node) => node.text).join(' ');
+
+                    setCharacterCount(text.length);
+                }
+            };
+
+            editorTextarea.on('update', updateCharacterCount);
+            updateCharacterCount();
+
+            return () => {
+                editorTextarea.off('update', updateCharacterCount);
+            };
         }
-        if (editorImage && tweet.imageURL) {
-            editorImage.chain().focus().setImage({ src: tweet.imageURL }).run()        }
-    }, [editorTextarea, tweet]);
+
+        return undefined;
+    }, [editorTextarea]);
 
     const percentage = editorTextarea
-        ? Math.round((100 / limit) * editorTextarea.storage.characterCount.characters())
+        ? Math.round((100 / LIMIT) * editorTextarea.state.doc.textContent.length)
         : 0
 
-
-    const handleAddNewCard = () => {
+    const handleAddNewTweet = () => {
         dispatch(tweetsMiddleware.addTweet(
             {
                 name: 'Sergeiee',
@@ -77,53 +116,62 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet}) => {
 
     const handleDeleteImage = () => {
         if (editorImage) {
-            dispatch(tweetsMiddleware.updateImageOfTweet('', tweet))
+            dispatch(tweetsMiddleware.updateImageOfTweet('', tweet.id))
             editorImage.commands.setContent('');
         }
     }
 
-    return (
-        <div className='w-full'>
-            <div className='mt-5 outline-none w-full'>
-                <EditorContent className='text-field' editor={editorTextarea}/>
+    const UpdateTweetIdAndIndex = () => {
+        if (editorTextarea && tweetOfId) {
+            editorTextarea.view.focus()
+            dispatch(tweetsMiddleware.updateTweetOfId(tweetsList[index].id))
+            dispatch(tweetsMiddleware.updateTweetOfIndex(index - 1))
+        }
+    }
 
-                <div className={`relative ${!editorImage?.getCharacterCount() && 'hidden'}`}>
-                    <div onClick={handleDeleteImage}
-                         className="h-6 w-6 absolute top-2 z-10 cursor-pointer left-2 p-px text-red-500 transition bg-gray-800 hover:bg-gray-700 rounded-full hover:scale-125">
+    const SetZeroOfTweetIdAndIndex = () => {
+        if (editorTextarea && tweetOfId) {
+            editorTextarea.view.focus()
+            dispatch(tweetsMiddleware.updateTweetOfId(tweetsList[0].id))
+            dispatch(tweetsMiddleware.updateTweetOfIndex(0))
+        }
+    }
+
+    useEffect(() => {
+        UpdateTweetIdAndIndex()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [editorTextarea])
+
+    useEffect(() => {
+        if (editorTextarea && index === tweetOfIndex) {
+            UpdateTweetIdAndIndex()
+        } else if (editorTextarea && index === 0) {
+            SetZeroOfTweetIdAndIndex()
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [editorTextarea, index, tweetsList.length])
+
+
+    return (
+        <div className='w-full group'>
+            <div className='mt-5 outline-none w-full'>
+                <MenuBar editor={editorTextarea}/>
+                <div className='mt-5'>
+                    <EditorContent onClick={handleClick} onKeyDown={handleKeyDown} className="text-field break-words"
+                                   editor={editorTextarea}/>
+                </div>
+                <div className={`relative ${!editorImage?.storage.characterCount.characters() && 'hidden'}`}>
+                    <button type='button' onClick={handleDeleteImage}
+                            className="h-6 w-6 absolute top-2 z-10 cursor-pointer left-2 p-px transition bg-gray-800 hover:bg-gray-700 rounded-full hover:scale-125">
                         <CloseIcon/>
-                    </div>
-                    <EditorContent className='mt-4 text-field rounded-lg object-cover shadow-lg border border-2'
+                    </button>
+                    <EditorContent className='mt-3 text-field rounded-lg object-cover shadow-lg border-2'
                                    editor={editorImage}/>
                 </div>
             </div>
-            <div className='flex w-full justify-end'>
-                {editorTextarea &&
-                <div
-                    className={`w-28 justify-evenly flex mt-8 justify-end items-center end character-count ${editorTextarea.storage.characterCount.characters() === limit ? 'character-count--warning' : ''}`}>
-                    <TooltipButton tooltipTitle={`${editorTextarea.storage.characterCount.characters()}/280`}>
-                        <button
-                            className='flex transition-all transition ease-in-out delay-50 items-center focus:outline-none hover:-translate-y-1 hover:scale-110 h-5 w-5  text-blue-400'
-                            data-tooltip={`${editorTextarea.storage.characterCount.characters()}/${limit}`}
-                            onClick={() => setShowCircle(!showCircle)}>
-                            {showCircle ? <CircleIcon
-                                percentage={percentage}/> : <div
-                                className='dark-gray-color'>{(limit - editorTextarea.storage.characterCount.characters())}</div>}
-                        </button>
-                    </TooltipButton>
-                    <TooltipButton tooltipTitle='Add an image'>
-                        <ImageUploadInput editor={editorImage}  tweet={tweet} />
-                    </TooltipButton>
-                    <TooltipButton tooltipTitle='Add a new tweet'>
-                        <button onClick={handleAddNewCard} type="button" className='focus:outline-none'>
-                            <div
-                                className='h-5 w-5 text-gray-300 hover:text-blue-400 transition-all transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 duration-300'>
-                                <PlusIcon/>
-                            </div>
-                        </button>
-                    </TooltipButton>
-                </div>
-                }
-            </div>
+            <TweetFooter editorTextarea={editorTextarea} tweetOfId={tweetOfId} tweet={tweet}
+                         characterCount={characterCount} percentage={percentage} editorImage={editorImage}
+                         handleAddNewTweet={handleAddNewTweet}/>
         </div>
     )
 }

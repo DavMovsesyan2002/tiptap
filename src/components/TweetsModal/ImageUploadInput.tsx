@@ -1,27 +1,32 @@
-import React, {FC, ChangeEvent} from 'react';
+import React, {ChangeEvent,FC} from 'react';
+import {Editor} from "@tiptap/core";
+
 import ImageIcon from "../../assets/images/ImageIcon";
-import {Editor} from "@tiptap/react";
-import {dispatch} from "src/redux/hooks";
-import {tweetsMiddleware} from "src/redux/slices/tweets";
-import {ITweetProps} from "@allTypes/reduxTypes/tweetsStateTypes";
 
 interface ImageUploadInputProps {
     editor: Editor | null,
-    tweet: ITweetProps
 }
 
-const ImageUploadInput: FC<ImageUploadInputProps> = ({ tweet, editor}) => {
+const ImageUploadInput: FC<ImageUploadInputProps> = ({ editor}) => {
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        const reader = new FileReader();
 
-    const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (file && editor) {
-            const imageUrl = URL.createObjectURL(file);
-            editor.chain().focus().setImage({src: imageUrl}).run();
+        reader.onload = () => {
+            const imageDataURL = reader.result as string;
 
-            dispatch(tweetsMiddleware.updateImageOfTweet(imageUrl, tweet.id))
+            if (editor && imageDataURL) {
+                editor.chain().focus().setImage({ src: imageDataURL }).run();
+            }
+        };
 
+        if(file){
+            reader.readAsDataURL(file);
         }
+
+        e.target.value = ""
     };
+
 
     return (
         <div>

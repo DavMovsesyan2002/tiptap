@@ -1,13 +1,17 @@
 // tailwind.config.js
-const { fontFamily } = require('tailwindcss/defaultTheme')
+import lineClampUtilities from '@neojp/tailwindcss-line-clamp-utilities';
+import { fontFamily } from 'tailwindcss/defaultTheme';
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       maxWidth: {
         200: '12.5rem',
+      },
+      listStyleType: {
+        disc: 'disc',
+        decimal: 'decimal',
       },
       spacing: {
         7.5: '1.875rem',
@@ -71,15 +75,14 @@ module.exports = {
         },
       ],
       sm: [
-        '16px',
+        '.875rem',
         {
-          lineHeight: '150%',
-          letterSpacing: '0.01em',
-          fontWeight: '400',
+          fontSize: '',
+          lineHeight: '1.25rem',
         },
       ],
       base: [
-        '18px',
+        '1rem',
         {
           lineHeight: '150%',
           letterSpacing: '0.01em',
@@ -112,6 +115,8 @@ module.exports = {
     },
   },
   plugins: [
-      require('@neojp/tailwindcss-line-clamp-utilities'),
+    lineClampUtilities,
   ],
 }
+
+export default config;
