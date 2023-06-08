@@ -31,6 +31,7 @@ const TweetBody: FC<ITweetBodyProps> = ({tweet, tweetOfId, index, handleClick}) 
     const uuid = uuidv4();
     const [characterCount, setCharacterCount] = useState(0);
     const tweetOfIndex = useAppSelector(tweetsSelector.tweetOfIndex);
+
     const editorTextarea = useEditorTextarea({tweet});
 
     const handleKeyTwice = (event: React.KeyboardEvent<HTMLDivElement>) => {
